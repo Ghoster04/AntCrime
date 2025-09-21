@@ -1,0 +1,18 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo vermelho -->
+  <rect width="512" height="512" fill="#dc2626" rx="64"/>
+  
+  <!-- Borda branca -->
+  <rect width="512" height="512" fill="none" stroke="#ffffff" stroke-width="24" rx="64"/>
+  
+  <!-- Escudo central -->
+  <path d="M256 96L144 160V256C144 320 192 384 256 416C320 384 368 320 368 256V160L256 96Z" 
+        fill="#ffffff" stroke="#dc2626" stroke-width="8"/>
+  
+  <!-- Texto AC04 -->
+  <text x="256" y="280" font-family="Arial, sans-serif" font-size="48" font-weight="bold" 
+        text-anchor="middle" fill="#dc2626">AC04</text>
+  
+  <!-- Linha decorativa -->
+  <line x1="144" y1="320" x2="368" y2="320" stroke="#ffffff" stroke-width="4"/>
+</svg>
