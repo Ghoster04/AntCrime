@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerador de Ícones PWA - AntiCrime04</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .icon { margin: 10px; border: 1px solid #ccc; }
+        canvas { border: 1px solid #000; }
+    </style>
+</head>
+<body>
+    <h1>Ícones PWA - AntiCrime04</h1>
+    <p>Clique no botão para gerar e baixar os ícones:</p>
+    
+    <button onclick="generateIcons()">Gerar Ícones</button>
+    
+    <div id="icons"></div>
+
+    <script>
+        function generateIcons() {
+            const sizes = [192, 256, 384, 512];
+            const container = document.getElementById('icons');
+            container.innerHTML = '';
+            
+            sizes.forEach(size => {
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                
+                // Fundo vermelho
+                ctx.fillStyle = '#dc2626';
+                ctx.fillRect(0, 0, size, size);
+                
+                // Borda branca
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = size * 0.05;
+                ctx.strokeRect(0, 0, size, size);
+                
+                // Texto "AC04"
+                ctx.fillStyle = '#ffffff';
+                ctx.font = `bold ${size * 0.3}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('AC04', size/2, size/2);
+                
+                // Adicionar ao DOM
+                const div = document.createElement('div');
+                div.className = 'icon';
+                div.innerHTML = `<p>${size}x${size}</p>`;
+                div.appendChild(canvas);
+                
+                // Botão de download
+                const button = document.createElement('button');
+                button.textContent = 'Download';
+                button.onclick = () => downloadCanvas(canvas, `icon-${size}x${size}.png`);
+                div.appendChild(button);
+                
+                container.appendChild(div);
+            });
+        }
+        
+        function downloadCanvas(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Gerar automaticamente
+        generateIcons();
+    </script>
+</body>
+</html>
