@@ -50,7 +50,7 @@ export const EmergencyTestButton: React.FC = () => {
       try {
         // Tentar registrar dispositivo de teste (mesmo IMEI do emulador)
         const deviceRes = await anticrimeAPI.dispositivos.register({
-          imei: '222222222222222',
+          imei: '768006023688070',
           modelo: 'Android Phone',
           marca: 'Acme',
           sistema_operacional: 'Android 13',
