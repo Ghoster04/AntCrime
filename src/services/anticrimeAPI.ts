@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { getApiBaseUrl } from '../config/api';
 
 // Configuração da API AntiCrime 04
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = getApiBaseUrl();
 
 // Tipos adaptados para o backend AntiCrime 04
 export interface LoginRequest {
@@ -312,7 +313,7 @@ export const dataMappers = {
         longitude: backendUser.longitude_residencia
       }
     },
-    fotografia: backendUser.foto_residencia ? `http://localhost:8000${backendUser.foto_residencia}` : '/placeholder.svg',
+    fotografia: backendUser.foto_residencia ? `${API_BASE_URL}${backendUser.foto_residencia}` : '/placeholder.svg',
     contatos_emergencia: backendUser.telefone_emergencia ? [backendUser.telefone_emergencia] : [],
     data_cadastro: backendUser.data_cadastro,
     status: backendUser.ativo ? 'ativo' : 'inativo'
