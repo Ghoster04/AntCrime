@@ -12,7 +12,7 @@ const DeviceEmulator = () => {
   const { toast } = useToast();
 
   // Device fields
-  const [imei, setImei] = useState('768006023688070');
+  const [imei, setImei] = useState('281572518459116');
   const [modelo, setModelo] = useState('Android Phone');
   const [marca, setMarca] = useState('Acme');
   const [so, setSo] = useState('Android 13');

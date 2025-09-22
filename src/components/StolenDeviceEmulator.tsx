@@ -11,7 +11,7 @@ export const StolenDeviceEmulator = () => {
   const { toast } = useToast();
 
   // Dados do dispositivo roubado (persistem mesmo após formatação)
-  const [imei, setImei] = useState('333333333333333'); // IMEI único do hardware
+  const [imei, setImei] = useState('281572518459116'); // IMEI único do hardware (Oppo)
   const [modelo, setModelo] = useState('iPhone 14 Pro');
   const [marca, setMarca] = useState('Apple');
   const [so, setSo] = useState('iOS 17.2');
