@@ -32,7 +32,7 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   useEffect(() => {
     // Single connection for the whole app
-    const ws = new WebSocket('ws://localhost:8000/ws');
+    const ws = new WebSocket('wss://ant-crime-production.up.railway.app//ws');
     wsRef.current = ws;
 
     ws.onopen = () => setConnected(true);
