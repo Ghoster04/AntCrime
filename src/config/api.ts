@@ -4,7 +4,7 @@ export const API_CONFIG = {
   PRODUCTION_URL: 'https://ant-crime-production.up.railway.app',
   
   // Development API URL (for local development)
-  DEVELOPMENT_URL: 'http://localhost:8000',
+  DEVELOPMENT_URL: 'https://ant-crime-production.up.railway.app/',
   
   // Current API URL (can be overridden by environment variables)
   BASE_URL: import.meta.env.VITE_API_BASE_URL || 'https://ant-crime-production.up.railway.app',
@@ -29,3 +29,4 @@ export const getApiBaseUrl = (): string => {
 export const getApiDocsUrl = (): string => {
   return API_CONFIG.DOCS_URL;
 };
+
