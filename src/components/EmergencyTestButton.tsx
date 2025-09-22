@@ -7,7 +7,7 @@ import { anticrimeAPI } from '@/services/anticrimeAPI';
 export const EmergencyTestButton: React.FC = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const TEST_IMEI = '768006023688070';
+  const TEST_IMEI = '281572518459116';
 
   const simulateEmergency = async () => {
     setIsLoading(true);
