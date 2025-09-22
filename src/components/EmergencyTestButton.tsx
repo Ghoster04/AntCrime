@@ -13,7 +13,7 @@ export const EmergencyTestButton: React.FC = () => {
   const [currentEmergency, setCurrentEmergency] = useState<any | null>(null);
 
   const simulateEmergency = async () => {
-    setIsLoading(true);
+    setIsLoading(true); 
     let phase: 'init' | 'resolve-device' | 'send-sos' = 'init';
     try {
       // Obter localização atual do usuário
