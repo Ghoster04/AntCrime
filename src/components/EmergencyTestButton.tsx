@@ -7,6 +7,7 @@ import { anticrimeAPI } from '@/services/anticrimeAPI';
 export const EmergencyTestButton: React.FC = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const TEST_IMEI = '768006023688070';
 
   const simulateEmergency = async () => {
     setIsLoading(true);
@@ -45,12 +46,12 @@ export const EmergencyTestButton: React.FC = () => {
       }
 
       // Primeiro, registrar um dispositivo de teste se necessário
-      let deviceId = 999; // ID de dispositivo de teste
+      let deviceId: number | null = null; // será resolvido por registro ou busca por IMEI
 
       try {
         // Tentar registrar dispositivo de teste (mesmo IMEI do emulador)
         const deviceRes = await anticrimeAPI.dispositivos.register({
-          imei: '768006023688070',
+          imei: TEST_IMEI,
           modelo: 'Android Phone',
           marca: 'Acme',
           sistema_operacional: 'Android 13',
@@ -58,13 +59,28 @@ export const EmergencyTestButton: React.FC = () => {
         });
         deviceId = deviceRes.dispositivo_id;
       } catch (err: any) {
-        // Se o dispositivo já existe, usar ID padrão
-        if (err?.response?.status !== 400) {
+        // Se o dispositivo já existe (409/400), tentar localizar pelo IMEI
+        const status = err?.response?.status;
+        if (status === 400 || status === 409) {
+          try {
+            const dispositivos = await anticrimeAPI.dispositivos.getAll(0, 500);
+            const existente = dispositivos.find((d) => d.imei === TEST_IMEI);
+            if (existente) {
+              deviceId = existente.id;
+            } else {
+              throw new Error('Dispositivo de teste com IMEI informado não encontrado.');
+            }
+          } catch (lookupErr) {
+            throw lookupErr;
+          }
+        } else {
           throw err;
         }
       }
 
       // Criar emergência SOS real com localização atual
+      if (!deviceId) throw new Error('Falha ao resolver o ID do dispositivo de teste.');
+
       const sosRes = await anticrimeAPI.emergencias.sos({
         dispositivo_id: deviceId,
         latitude,
